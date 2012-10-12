@@ -1,0 +1,7 @@
+<% if @task.new_record? %>
+  $('#task_description').effect('highlight', { color: 'red' });
+<% else %>
+  $('#task_description').val('');
+  $('div#tasks').append("<%= escape_javascript(render @task) %>");
+  $('div#<%= dom_id(@task) %>').effect('highlight');
+<% end %>

@@ -7,8 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<div id="wrapper">
+		<nav>
+			<% if user_signed_in? %>
+				<a href="/tasks">My tasks</a>
+				<div class="user-nav">
+					Hello <a href="/users/edit"><%= current_user.email %></a>! 
+					<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+				</div>
+			<% else %>
+				<a href="/users/sign_up">Register</a>
+				<a href="/users/sign_in">Sign in</a>
+			<% end %>
+		</nav>
+		
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+		
+		<%= yield %>
+	</div>
 </body>
 </html>

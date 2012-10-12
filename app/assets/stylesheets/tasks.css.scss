@@ -1,0 +1,38 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#tasks {
+  padding-bottom:10px;
+  margin-bottom:10px;
+  border-bottom:10px solid #ddd;
+}
+
+#new_task {
+	display:none;
+}
+
+.task form {
+	float: left;
+}
+
+
+#tasks-done form.edit_task, #tasks form.edit_task {
+  float:left;
+}
+
+#tasks-done .task, #tasks-done .task .messages a {
+  color:#ddd;
+}
+
+#tasks-done .task, #tasks .task {
+  border-bottom:1px solid #ddd;
+  padding:4px 0;
+  position: relative;
+}
+
+.task .actions {
+  position: absolute;
+  top:4px;
+  right: 0;
+}

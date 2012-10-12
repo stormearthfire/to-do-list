@@ -1,0 +1,43 @@
+<h1>My tasks</h1>
+<span class="open"><%= link_to_function 'Add new task', '$("#new_task").slideDown();', :class => 'new_task' %></span>
+
+<%= form_for([Task.new], remote: :true) do |f| %>
+  <div class="field">
+    <%= f.label :description, 'My new task' %><br />
+    <%= f.text_area :description, {:rows => 4} %>
+  </div>
+  <div class="actions">
+    <%= positive_button_submit_tag 'Add new task' %>
+    <%= link_to_function 'Done', '$("#new_task").slideUp();' %>
+  </div>
+<% end %>
+
+
+<div id="tasks">
+  <%= render @tasks.undone %>
+</div>
+
+<div id="tasks-done">
+  <%= render @tasks.done.limit(3) %>
+</div><br />
+
+<script>
+$(function() {
+  $("#tasks").sortable({
+    axis: 'y',
+    cursor: 'row-resize',
+    opacity: 0.4,
+    update: function() {
+      $.ajax({
+        type: 'post',
+        data: $('#tasks').sortable('serialize'),
+        dataType: 'script',
+        complete: function(request) {
+          $('#tasks').effect('highlight');
+        },
+        url: "/tasks/sort"
+      });
+    }
+  });
+});
+</script>

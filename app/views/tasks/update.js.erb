@@ -1,0 +1,7 @@
+<% if @task.done? %>
+  $('#<%= dom_id(@task) %>').slideUp().remove();
+  $('#tasks-done').prepend("<%= escape_javascript(render @task) %>");
+<% else %>
+  $('#<%= dom_id(@task) %>').slideUp().remove();
+  $('#tasks').append("<%= escape_javascript(render @task) %>");
+<% end %>

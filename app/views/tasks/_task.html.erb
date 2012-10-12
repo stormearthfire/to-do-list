@@ -1,0 +1,12 @@
+<%= div_for task do %>
+  <%= form_for([task], remote: true) do |f| %>
+    <%= f.check_box :done, :onclick => '$(this).parent().submit();' %>
+  <% end %>
+  
+  <%= task.description %>
+  <span class="user"><%= task.user.email %></span>
+  <div class="actions">
+    <%= link_to 'Delete', [task], confirm: 'Are you sure?', method: :delete, remote: true %>
+  </div>
+  <div class="brclear"></div>
+<% end %>
